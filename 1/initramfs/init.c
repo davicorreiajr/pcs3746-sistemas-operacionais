@@ -8,15 +8,14 @@
 //    return 0;
 // }
 
-// #include "hello_world.h"
-
+#include "hello_world.h"
 #include <sys/syscall.h>
-#include <unistd.h>
 
 int main()
 {
    while (1) {
-      syscall(292);
+      hello_world();
+      syscall(404);
    }
    return 0;
 }

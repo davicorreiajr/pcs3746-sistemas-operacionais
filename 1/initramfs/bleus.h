@@ -17,19 +17,31 @@ long bleus() {
 
   if (fork()) {
     while(1) {
-      printf("1");
+      printf("1\n");
+
       P(0);
-      printf("2");
+      printf("2\n");
+      sleep(1);
+      printf("3\n");
+      sleep(1);
+      printf("4\n");
       V(0);
-      printf("3");
+
+      printf("5\n");
     }
   } else {
     while(1) {
-      printf("A");
+      printf("A\n");
+
       P(0);
-      printf("B");
+      printf("B\n");
+      sleep(1);
+      printf("C\n");
+      sleep(1);
+      printf("D\n");
       V(0);
-      printf("C");
+
+      printf("E\n");
     }
   }
 }

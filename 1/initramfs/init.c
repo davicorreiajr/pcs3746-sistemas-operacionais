@@ -1,11 +1,12 @@
-#include "hello_world.h"
 #include <sys/syscall.h>
+// #include "hello_world.h"
+#include "bleus.h"
 
 int main()
 {
    while (1) {
-      hello_world();
-      syscall(404);
+    bleus();
+    // hello_world();
    }
    return 0;
 }

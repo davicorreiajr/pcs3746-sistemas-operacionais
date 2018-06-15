@@ -38,8 +38,7 @@ long bleus() {
 void create_sem(int N) {
   printf("create %d semaphores\n", N);
   mysem = semget(KEY, N, 0666 | IPC_CREAT);
-  if(mysem < 0)
-  error_msg();
+  if(mysem < 0) printf("error create_sem");
 } 
 
 //initialize all semaphores value=1
@@ -56,7 +55,7 @@ void init_sem(int N) {
   
   for (j=0; j<N; j++) {
     retval = semctl(mysem, j, SETVAL, arg);
-    if(retval < 0) error2("Error: semctl", j);
+    if(retval < 0) printf("error init_sem: semctl: %d\n", j);
     show_sem(j);
   }
 }
@@ -80,7 +79,7 @@ void PV(int i, int act) {
   op.sem_op = act; //1=V, -1=P
   op.sem_flg = 0; //will wait
   retval = semop(mysem, &op, 1);
-  if(retval != 0) error2("error: semop: ", act);
+  if(retval != 0) printf("error PV: semop: %d\n", act);
   show_sem(i);
 }
 

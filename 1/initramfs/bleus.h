@@ -19,13 +19,13 @@ long bleus() {
     while(1) {
       printf("1\n");
 
-      P(0);
+      P(0, 1);
       printf("2\n");
       sleep(1);
       printf("3\n");
       sleep(1);
       printf("4\n");
-      V(0);
+      V(0, 1);
 
       printf("5\n");
     }
@@ -33,13 +33,13 @@ long bleus() {
     while(1) {
       printf("A\n");
 
-      P(0);
+      P(0, 2);
       printf("B\n");
       sleep(1);
       printf("C\n");
       sleep(1);
       printf("D\n");
-      V(0);
+      V(0, 2);
 
       printf("E\n");
     }
@@ -73,12 +73,15 @@ void init_sem(int N) {
 }
 
 // if semaphore value is 0, wait; otherwise, decrement semaphore value.
-void P(int i) {
+void P(int i, int processo) {
+  printf("P%d entrou\n", processo);
   PV(i, -1);
+  printf("P%d saiu\n", processo);
 }
 
 // if any waiters, wake one; otherwise, increment semaphore value.
-void V(int i) {
+void V(int i, int processo) {
+  printf("V%d entrou\n", processo);
   PV(i, 1);
 } 
 
@@ -92,7 +95,7 @@ void PV(int i, int act) {
   op.sem_flg = 0; //will wait
   retval = semop(mysem, &op, 1);
   if(retval != 0) printf("error PV: semop: %d\n", act);
-  show_sem(i);
+  // show_sem(i);
 }
 
 void show_sem(int i) {
